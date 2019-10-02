@@ -1,0 +1,5 @@
+Basicamente esta banana serve para testar o guisado com outro ficheiro e então ficamos 
+com a uva entre eles
+e vemos se são mesmo iguais
+ou não e se não forem devia
+dar uma distancia pequena.

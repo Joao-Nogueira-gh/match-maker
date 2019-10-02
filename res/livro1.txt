@@ -1,0 +1,6 @@
+Basicamente este ficheiro,
+serve para testar a
+similaridade com outro ficheiro e depois obtemos a distancia entre eles
+e verificamos se são realmente semelhantes
+ou não e se não forem devia
+dar uma distancia pequena.
