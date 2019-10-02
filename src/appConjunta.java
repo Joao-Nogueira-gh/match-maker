@@ -1,4 +1,4 @@
-package projeto;
+package src;
 
 import java.io.*;
 import java.util.*;
@@ -54,7 +54,7 @@ public class appConjunta {
 
 		
 		// Se quisermos fazer a app interativa podemos perguntar qts utilizadores querem selecionar (% do cont_est)
-		// e tambem qual o threshold de semelhança q querem verificar
+		// e tambem qual o threshold de semelhanï¿½a q querem verificar
 		// e tipo quantos utilizadores mais semelhantes querem ver
 		
 		Scanner sc = new Scanner(System.in);
@@ -130,9 +130,9 @@ public class appConjunta {
 					fixe[1] + ":"+selectedUsers[fixe[1]]);
 		}
 		
-		System.out.println("A Area mais popular é " + coolArea + " com " + maxFreq + " escolhas entre os utilizadores");
+		System.out.println("A Area mais popular ï¿½ " + coolArea + " com " + maxFreq + " escolhas entre os utilizadores");
 		System.out.println("Foram feitos " + sims.size() + " pares");
-		System.out.printf("Em média, cada utilizador escolheu %3.2f interesses",(double)areaCounter.getCount()*2/(double)betaUsers);
+		System.out.printf("Em mï¿½dia, cada utilizador escolheu %3.2f interesses",(double)areaCounter.getCount()*2/(double)betaUsers);
 
 
 		

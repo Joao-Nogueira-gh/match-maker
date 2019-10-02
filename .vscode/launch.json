@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - testCont_Est",
+            "request": "launch",
+            "mainClass": "testCont_Est"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - testCont_Est",
+            "request": "launch",
+            "mainClass": "projeto.testCont_Est"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - appConjunta",
+            "request": "launch",
+            "mainClass": "projeto.appConjunta"
+        }
+    ]
+}

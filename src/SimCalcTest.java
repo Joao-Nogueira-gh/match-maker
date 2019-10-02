@@ -1,4 +1,4 @@
-package projeto;
+package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,11 +21,11 @@ public class SimCalcTest {
 		
 		SimilarityCalculator simCalc = new SimilarityCalculator(files,nFuncs);
 		
-		// Começaremos por ver o conteudo de cada ficheiro
+		// Comeï¿½aremos por ver o conteudo de cada ficheiro
 		
 		simCalc.printWords();
 		
-		// A matriz assinatura para 2 ficheiros será composta por 2 colunas (nFicheiros) e
+		// A matriz assinatura para 2 ficheiros serï¿½ composta por 2 colunas (nFicheiros) e
 		// nFuncs linhas (neste caso 5)
 				
 		double[][] sim;
@@ -147,7 +147,7 @@ public class SimCalcTest {
 			//System.out.println();
 		}
 
-		System.out.println("Numero de semelhanças com threshold superior ao definido: " + similarUser);
+		System.out.println("Numero de semelhanï¿½as com threshold superior ao definido: " + similarUser);
 	}
 
 }

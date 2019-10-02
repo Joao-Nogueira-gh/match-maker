@@ -1,4 +1,4 @@
-package projeto;
+package src;
 
 import java.util.Arrays;
 
@@ -24,7 +24,7 @@ public class CountingBloomFilter<T> { // mudei tudo para newhashcode, n resultou
 			
 			this.nFuncs = opt_k_i;
 		}
-		else if (flag>2) { //aqui a flag é o nHashfunc para nao usar mais argumentos
+		else if (flag>2) { //aqui a flag ï¿½ o nHashfunc para nao usar mais argumentos
 			double opt_n=((nFuncs_or_m*Math.log(size_or_fp))/(Math.log(2)*Math.log(0.5)));
 			int opt_n_i=(int) Math.round(opt_n);
 			
@@ -33,7 +33,7 @@ public class CountingBloomFilter<T> { // mudei tudo para newhashcode, n resultou
 			this.nFuncs=flag;
 		}
 		else {
-			System.out.println("Flag Inválida");
+			System.out.println("Flag Invï¿½lida");
 			return;
 		}
 

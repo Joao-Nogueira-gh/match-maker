@@ -1,4 +1,4 @@
-package projeto;
+package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +39,7 @@ public class Main {
 		System.out.println("A palavra '"+palavra+"' apareceu "+cbf.count(palavra)+" vez(es)");
 		
 		// para testar o contador estocastico quero saber quantas palavras ha no total
-		System.out.println("O contador estocástico contou " + ce.getCount() + " palavras. Logo temos cerca de " + ce.getCount()/0.5 + " palavras no total.");
+		System.out.println("O contador estocï¿½stico contou " + ce.getCount() + " palavras. Logo temos cerca de " + ce.getCount()/0.5 + " palavras no total.");
 		
 		//	Iremos testar agora os falsos positivos
 		

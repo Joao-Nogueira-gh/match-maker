@@ -1,4 +1,4 @@
-package projeto;
+package src;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -58,9 +58,9 @@ public class CBFTest {
 			double e = Math.exp((double) -nFuncs[nFunc] * m / n);
 			pteorica = Math.pow(1 - e, nFuncs[nFunc]);
 
-			System.out.println("Percentagem prática de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
+			System.out.println("Percentagem prï¿½tica de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
 					+ percentagem * 100 + "%");
-			System.out.println("Percentagem teórica de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
+			System.out.println("Percentagem teï¿½rica de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
 					+ pteorica * 100 + "%");
 			System.out.println(
 					"----------------------------------------------------------------------------------------------");

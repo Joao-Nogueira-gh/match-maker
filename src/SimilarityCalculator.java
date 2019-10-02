@@ -1,4 +1,4 @@
-package projeto;
+package src;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,18 +10,18 @@ import java.util.Scanner;
 
 public class SimilarityCalculator {
 	
-	// min hash e o minimo da funçao hash
+	// min hash e o minimo da funï¿½ao hash
 	// aplicar hash functions a cada uma das palavras dos documentos e vou buscar a min hash gerada por cada um
 	// se usar n hash functions vou acabar com n min hashes;
 	// um documento e caracterizado por essas n min hashes -> conjunto de min hashes aka assinatura;
 	// aplicar um jaccard meio chines nesses dois conjuntos de min hashes;
-	// se forem iguais interseçao++;
-	// a similaridade vai ser dada por interseçao/n;
+	// se forem iguais interseï¿½ao++;
+	// a similaridade vai ser dada por interseï¿½ao/n;
 	
 	int nFuncs;
 	int nFiles;
 	int b,r;
-	ArrayList<String>[] words;	// array de arraylists onde cada posiçao ira conter um array com as palavras do ficheiro da posiçao i do array de ficheiros passado como argumento
+	ArrayList<String>[] words;	// array de arraylists onde cada posiï¿½ao ira conter um array com as palavras do ficheiro da posiï¿½ao i do array de ficheiros passado como argumento
 	double threshold;
 	
 	@SuppressWarnings("unchecked")
@@ -188,8 +188,8 @@ public class SimilarityCalculator {
 	public void LSH() {
 		int[][] sim=this.getSignatureMatrix();
 		ArrayList<int[]> bandas=new ArrayList<>();	// arrayList de arrays (bandas), onde cada
-												// posiçao sera ocupada por um array (banda)
-		for(int i=0;i<b;i++) {					// onde cada posiçao equivale ao hashing
+												// posiï¿½ao sera ocupada por um array (banda)
+		for(int i=0;i<b;i++) {					// onde cada posiï¿½ao equivale ao hashing
 			//if(bandas.get(i)==null){			// de cada coluna (documento)
 				int[] banda=new int[nFiles];
 				for(int ai=0;ai<nFiles;ai++) {
@@ -203,9 +203,9 @@ public class SimilarityCalculator {
 			//}
 		}
 		
-		// Temos neste momento uma estrutura de dados que contem todas as bandas, uma em cada posiçao
-		// Queremos agora mapear cada uma das posiçoes das bandas para buckets; se pelo menos
-		// uma das posiçoes da alguma das bandas mapear para a mm posiçao que outra
+		// Temos neste momento uma estrutura de dados que contem todas as bandas, uma em cada posiï¿½ao
+		// Queremos agora mapear cada uma das posiï¿½oes das bandas para buckets; se pelo menos
+		// uma das posiï¿½oes da alguma das bandas mapear para a mm posiï¿½ao que outra
 		// probably esses cenas sao semelhantes
 		
 		@SuppressWarnings("unchecked")
@@ -225,9 +225,9 @@ public class SimilarityCalculator {
 		}
 		
 		// Agora temos uma estrutura de dados com todos os buckets e onde foram inseridas
-		// todas as hashes de cada coluna de cada banda. Sempre que o size de cada posiçao
+		// todas as hashes de cada coluna de cada banda. Sempre que o size de cada posiï¿½ao
 		// for maior que 1, quer dizer que temos similaridade entre os dois ficheiros
-		// nessa posiçao
+		// nessa posiï¿½ao
 		
 		double[][] similarity=this.getSimilarity();
 		
@@ -250,12 +250,12 @@ public class SimilarityCalculator {
 		
 		
 		// WHAT IF: arrays de documentos onde cada array representa uma banda
-		// e cada posiçao do array representa a hash duma coluna
+		// e cada posiï¿½ao do array representa a hash duma coluna
 		
 	}
 	
 	public int hash(int nr) {
-		return Math.abs((nr*nFiles)%10000);	// 10000 = espaço no bucket
+		return Math.abs((nr*nFiles)%10000);	// 10000 = espaï¿½o no bucket
 	}
 	
 	
