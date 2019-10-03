@@ -20,7 +20,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="137684.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MatchMaker
    </div>
@@ -84,7 +83,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a7747400810a219113e7da0df1db1368f"><td class="memItemLeft" align="right" valign="top">static ArrayList&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_teste_conjunto.html#a7747400810a219113e7da0df1db1368f">makeShingles</a> (String filepath, int k)  throws IOException </td></tr>
 <tr class="separator:a7747400810a219113e7da0df1db1368f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class used for combined testing of the 3 modules (ContadorEstocastico, <a class="el" href="classsrc_1_1_counting_bloom_filter.html">CountingBloomFilter</a> and <a class="el" href="classsrc_1_1_similarity_calculator.html">SimilarityCalculator</a>) </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6e0850e3d68fc56041c08397b83fe61a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e0850e3d68fc56041c08397b83fe61a">&#9670;&nbsp;</a></span>generateString()</h2>
 
@@ -107,6 +108,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Generates an UUID (Universally Unique Identifier) </p><dl class="section return"><dt>Returns</dt><dd>UUID </dd></dl>
 
 </div>
 </div>
@@ -133,6 +135,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>The Counting Bloom Filter is used to check how many times a word appears in the analyzed files. <br  />
+ The 'ContadorEstocastico' counts the total number of words in the 8 files (number=count/prob). <br  />
+ The <a class="el" href="classsrc_1_1_similarity_calculator.html">SimilarityCalculator</a> calculates the two most similar files out those 8.</p>
 
 </div>
 </div>
@@ -169,6 +174,20 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Function used to create Shingles (small blocks of text used for comparison) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td></td></tr>
+    <tr><td class="paramname">k</td><td>length of each shingle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of shingles </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main_2ejava_68',['Main.java',['../_main_8java.html',1,'']]]
+  ['simcalctest_2ejava_69',['SimCalcTest.java',['../_sim_calc_test_8java.html',1,'']]],
+  ['similaritycalculator_2ejava_70',['SimilarityCalculator.java',['../_similarity_calculator_8java.html',1,'']]]
 ];

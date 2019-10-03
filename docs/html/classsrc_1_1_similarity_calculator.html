@@ -20,7 +20,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="137684.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MatchMaker
    </div>
@@ -86,6 +85,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a11533c26284529f202dbb6bc272c7ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4b21fcf063a33e5b00b00105b84419c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_similarity_calculator.html#ad4b21fcf063a33e5b00b00105b84419c">SimilarityCalculator</a> (ArrayList&lt; String &gt;[] arr, int nFuncs)</td></tr>
 <tr class="separator:ad4b21fcf063a33e5b00b00105b84419c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87bc411f14c1ce0f1049ce57bfb4947e"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; String &gt;[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_similarity_calculator.html#a87bc411f14c1ce0f1049ce57bfb4947e">getWords</a> ()</td></tr>
+<tr class="separator:a87bc411f14c1ce0f1049ce57bfb4947e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4709e0c8613e7b06483614645785b2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_similarity_calculator.html#ae4709e0c8613e7b06483614645785b2d">setWords</a> (ArrayList&lt; String &gt;[] words)</td></tr>
+<tr class="separator:ae4709e0c8613e7b06483614645785b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade81c6822ef6890fbf3ec71ac31374b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_similarity_calculator.html#ade81c6822ef6890fbf3ec71ac31374b5">printWords</a> ()</td></tr>
 <tr class="separator:ade81c6822ef6890fbf3ec71ac31374b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3440ed22600a495d87689e415f799ed"><td class="memItemLeft" align="right" valign="top">int[][]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_similarity_calculator.html#ad3440ed22600a495d87689e415f799ed">getSignatureMatrix</a> ()</td></tr>
@@ -106,7 +109,13 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8f9c5f4b75420e8ff0b9d3ff0503109"><td class="memItemLeft" align="right" valign="top">static ArrayList&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1_similarity_calculator.html#aa8f9c5f4b75420e8ff0b9d3ff0503109">makeShingles</a> (String filepath, int k)  throws IOException </td></tr>
 <tr class="separator:aa8f9c5f4b75420e8ff0b9d3ff0503109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classsrc_1_1_similarity_calculator.html">SimilarityCalculator</a> determines the most identical documents out of a set. How it works:</p><ul>
+<li>apply k hash functions to each of the words in the documents</li>
+<li>retrieve the minimal hash value that was generated</li>
+<li>having k hash functions, a document's signature is the set of k min hashes *through algorithms like the Jaccard index the similarity of those signatures is computed </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a868985f4ba2652f9d473bb0da9bba0f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a868985f4ba2652f9d473bb0da9bba0f2">&#9670;&nbsp;</a></span>SimilarityCalculator() <span class="overload">[1/5]</span></h2>
 
@@ -132,6 +141,19 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>First constructor option, directly receives the files and number of hash functions, stores all words in the file </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">files</td><td>array of files to check </td></tr>
+    <tr><td class="paramname">nFuncs</td><td>number of hash functions being used </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">FileNotFoundException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -160,6 +182,19 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Second constructor option, instead of accepting the files to analyzed, it handles the array of words of those files directly </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wordArrays</td><td>array of arrays containg words of each file </td></tr>
+    <tr><td class="paramname">nFuncs</td><td>number of hash functions </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">FileNotFoundException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -188,6 +223,13 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Third constructor option, this time the first argument is an ArrayList of ArrayList of all the words in the already analyzed docs </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arrList</td><td>arraylist of arraylists containg words of each file </td></tr>
+    <tr><td class="paramname">nFuncs</td><td>number of hash functions </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -216,6 +258,13 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Fourth and final constructor option, accepts an Arraylist of Arrays of Strings </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arr</td><td>Arraylist of arrays of string containg words in each file </td></tr>
+    <tr><td class="paramname">nFuncs</td><td>number of hash functions </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -256,6 +305,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Another constructor for using the LSH method, providing a threshold, number of rows and bands and the usual array of words </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arrList</td><td>of all words in all files </td></tr>
+    <tr><td class="paramname">threshold</td><td>of similarity to be considered </td></tr>
+    <tr><td class="paramname">b</td><td>number of bands </td></tr>
+    <tr><td class="paramname">r</td><td>number of rows </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -274,6 +332,7 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes the signature of each file, to be compared later </p><dl class="section return"><dt>Returns</dt><dd>document signature </dd></dl>
 
 </div>
 </div>
@@ -285,6 +344,24 @@ Static Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">double [][] src.SimilarityCalculator.getSimilarity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes the similarity between all the analyzed files, using the already computed signatures of each file </p><dl class="section return"><dt>Returns</dt><dd>array of similarities between files </dd></dl>
+
+</div>
+</div>
+<a id="a87bc411f14c1ce0f1049ce57bfb4947e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87bc411f14c1ce0f1049ce57bfb4947e">&#9670;&nbsp;</a></span>getWords()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ArrayList&lt;String&gt; [] src.SimilarityCalculator.getWords </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -309,6 +386,7 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>An extra hash function </p>
 
 </div>
 </div>
@@ -326,6 +404,8 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>LSH, an advance method for computing the similarities after having obtained the signature of the documents How it works: *split the signature matrix M into bands *hash bands of different documents *after hashing multiple times, if 2 bands are hashed at least once to the same bucket chances are they are similar </p>
+<p>&lt; arrayList de arrays (bandas), onde cada posiçao sera ocupada por um array (banda) onde cada posiçao equivale ao hashing de cada coluna (documento)</p>
 
 </div>
 </div>
@@ -362,6 +442,20 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Function used to create Shingles (small blocks of text used for comparison) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td></td></tr>
+    <tr><td class="paramname">k</td><td>length of each shingle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of shingles </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -380,6 +474,13 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Hash Code function </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>to be hashed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>hash code </dd></dl>
 
 </div>
 </div>
@@ -393,6 +494,25 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">void src.SimilarityCalculator.printWords </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Basically prints all the analyzed files, line by line </p>
+
+</div>
+</div>
+<a id="ae4709e0c8613e7b06483614645785b2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4709e0c8613e7b06483614645785b2d">&#9670;&nbsp;</a></span>setWords()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void src.SimilarityCalculator.setWords </td>
+          <td>(</td>
+          <td class="paramtype">ArrayList&lt; String &gt;[]&#160;</td>
+          <td class="paramname"><em>words</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
