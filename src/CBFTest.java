@@ -1,24 +1,22 @@
 package src;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-
-public class CBFTest {
+import java.io.*;
+import java.util.*;
+/**
+ * Class for testing the module of the Counting Bloom Filter
+ */
+public class CBFTeste {
 
 	public static void main(String[] args) throws IOException {
-		/*
+		/**
 		 * 
 		 * Para testar o nosso Counting Bloom Filter, usaremos o mesmo raciciocinio
 		 * seguido nos guioes praticos: inserimos n strings aleatorias no filtro e,
-		 * posteriormente, procuramos m strings aleatorias nesse mesmo filtro. A
-		 * probabilidade de serem geradas 2 strings iguais e desprezivel, logo o
+		 * posteriormente, procuramos m strings aleatorias nesse mesmo filtro. <br>
+		 * A probabilidade de serem geradas 2 strings iguais e desprezivel, logo o
 		 * acontecimento de uma string gerada ser de facto membro do cbf e reduzido ao
-		 * impossivel. Sempre que for detetada uma string no cbf consideramos como falso
-		 * positivo!
+		 * impossivel. <br>
+		 * Sempre que for detetada uma string no cbf consideramos como falso positivo!
 		 *
 		 */
 
@@ -58,9 +56,9 @@ public class CBFTest {
 			double e = Math.exp((double) -nFuncs[nFunc] * m / n);
 			pteorica = Math.pow(1 - e, nFuncs[nFunc]);
 
-			System.out.println("Percentagem pr�tica de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
+			System.out.println("Percentagem prática de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
 					+ percentagem * 100 + "%");
-			System.out.println("Percentagem te�rica de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
+			System.out.println("Percentagem teórica de falsos positivos para " + nFuncs[nFunc] + " hashfunctions: "
 					+ pteorica * 100 + "%");
 			System.out.println(
 					"----------------------------------------------------------------------------------------------");
@@ -113,7 +111,7 @@ public class CBFTest {
 				"----------------------------------------------------------------------------------------------");
 
 		System.out.println("Ready?");
-		//System.in.read();
+		System.in.read();
 		
 		CountingBloomFilter<String> teste=new CountingBloomFilter<String>(1000,100,2);
 		int fp2=0;

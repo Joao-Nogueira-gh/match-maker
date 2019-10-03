@@ -1,19 +1,18 @@
 package src;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-
+import java.io.*;
+/**
+ * This class is used to test how good our hash functions are, and generates matlab (.m) files from which you can create graphs to check said performance
+ */
 public class HashFunctionTest {
 
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		
-		// Generate n different strings
-		// Hash them accross m slots
-		// Check their distribution
-		// ????
-		// Profit
-		
+		/**
+		 * Generate n different strings <br>
+		 * Hash them accross m slots <br>
+		 * Check their distribution <br>
+		 */		
 		int n=1000;
 		int nFuncs;
 		int[] array=new int[1000000];
@@ -55,13 +54,21 @@ public class HashFunctionTest {
 
 	}
 
-	
+	/**
+	 * Generates an UUID (Universally Unique Identifier)
+	 * @return UUID
+	 */
 	public static String generateString() {
         String uuid = Long.toHexString(Double.doubleToLongBits(Math.random()));
         uuid=uuid.substring(2, uuid.length());
         return uuid;
     }
-	
+	/**
+	 * Hash Code Function
+	 * @param key
+	 * @param index
+	 * @return hash code
+	 */
 	public static int myHashFunction(String key, int index)
 	{
 		int hash;

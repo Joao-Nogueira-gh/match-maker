@@ -1,65 +1,76 @@
 package src;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.io.*;
+import java.util.*;
+/**
+ * The SimilarityCalculator determines the most identical documents out of a set.
+ * How it works:
+ *		* apply k hash functions to each of the words in the documents
+ *		* retrieve the minimal hash value that was generated
+ *		* having k hash functions, a document's signature is the set of k min hashes
+ *		*through algorithms like the Jaccard index the similarity of those signatures is computed
+ */
 public class SimilarityCalculator {
-	
-	// min hash e o minimo da fun�ao hash
-	// aplicar hash functions a cada uma das palavras dos documentos e vou buscar a min hash gerada por cada um
-	// se usar n hash functions vou acabar com n min hashes;
-	// um documento e caracterizado por essas n min hashes -> conjunto de min hashes aka assinatura;
-	// aplicar um jaccard meio chines nesses dois conjuntos de min hashes;
-	// se forem iguais interse�ao++;
-	// a similaridade vai ser dada por interse�ao/n;
-	
+
 	int nFuncs;
 	int nFiles;
-	int b,r;
-	ArrayList<String>[] words;	// array de arraylists onde cada posi�ao ira conter um array com as palavras do ficheiro da posi�ao i do array de ficheiros passado como argumento
+	int b, r;
+	ArrayList<String>[] words; //*< array de arraylists onde cada posiçao ira conter um array com as palavras do ficheiro da posiçao i do array de ficheiros passado como argumento */
 	double threshold;
-	
+
 	@SuppressWarnings("unchecked")
+	/**
+	 * First constructor option, directly receives the files and number of hash functions, stores all words in the file
+	 * @param files array of files to check
+	 * @param nFuncs number of hash functions being used
+	 * @throws FileNotFoundException
+	 */
 	public SimilarityCalculator(File[] files, int nFuncs) throws FileNotFoundException {
-		this.nFuncs=nFuncs;
-		this.nFiles=files.length;
+		this.nFuncs = nFuncs;
+		this.nFiles = files.length;
 		Scanner[] scanArray = new Scanner[nFiles];
-		this.words=new ArrayList[nFiles];
-		
-		for(int i=0; i < files.length; i++) {
+		this.words = new ArrayList[nFiles];
+
+		for (int i = 0; i < files.length; i++) {
 			scanArray[i] = new Scanner(files[i]);
-			words[i]=new ArrayList<String>();
-			while(scanArray[i].hasNext()) {
+			words[i] = new ArrayList<String>();
+			while (scanArray[i].hasNext()) {
 				words[i].add(scanArray[i].next());
 			}
 			scanArray[i].close();
 		}
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
+	/**
+	 * Second constructor option, instead of accepting the files to analyzed, it handles the array of words of those files directly
+	 * @param wordArrays array of arrays containg words of each file
+	 * @param nFuncs number of hash functions
+	 * @throws FileNotFoundException
+	 */
 	public SimilarityCalculator(String[][] wordArrays, int nFuncs) throws FileNotFoundException {
-		this.nFuncs=nFuncs;
-		this.nFiles=wordArrays.length;
-		this.words=new ArrayList[nFiles];
-		
-		for(int i=0; i < nFiles; i++) {
-			words[i]=new ArrayList<>();
-			for(int j=0; j < wordArrays[i].length; j++) {
-				if(wordArrays[i][j]!=null) {
+		this.nFuncs = nFuncs;
+		this.nFiles = wordArrays.length;
+		this.words = new ArrayList[nFiles];
+
+		for (int i = 0; i < nFiles; i++) {
+			words[i] = new ArrayList<>();
+			for (int j = 0; j < wordArrays[i].length; j++) {
+				if (wordArrays[i][j] != null) {
 					words[i].add(wordArrays[i][j]);
 				}
 			}
+
 		}
-		
 	}
-	
+
 	@SuppressWarnings("unchecked")
+	/**
+	 * Third constructor option, this time the first argument is an ArrayList of ArrayList of all the words in the already analyzed docs
+	 * @param arrList arraylist of arraylists containg words of each file
+	 * @param nFuncs number of hash functions
+	 */
 	public SimilarityCalculator(ArrayList<ArrayList<String>> arrList, int nFuncs) {
 		this.nFuncs = nFuncs;
 		this.nFiles = arrList.size();
@@ -69,87 +80,121 @@ public class SimilarityCalculator {
 			words[i] = arrList.get(i);
 		}
 	}
-	
-	public SimilarityCalculator(ArrayList<String>[] arr, int nFuncs) { //novo construtor
+	/**
+	 * Fourth and final constructor option, accepts an Arraylist of Arrays of Strings
+	 * @param arr Arraylist of arrays of string containg words in each file
+	 * @param nFuncs number of hash functions
+	 */
+	public SimilarityCalculator(ArrayList<String>[] arr, int nFuncs) { // novo construtor
 		this.nFuncs = nFuncs;
 		this.nFiles = arr.length;
-		this.words=arr;
+		this.words = arr;
 	}
-	
-	public void printWords() {		// prints every line of every file
+
+	public ArrayList<String>[] getWords() {
+		return words;
+	}
+
+	public void setWords(ArrayList<String>[] words) {
+		this.words = words;
+	}
+	/**
+	 * Basically prints all the analyzed files, line by line
+	 */
+	public void printWords() { // prints every line of every file
 		int line;
 		int i;
-		for(int file=0; file < this.nFiles; file++) {
-			System.out.println("FICHEIRO " + (file+1));
-			line=1;
-			for(i = 0;i<words[file].size();i++) {
+		for (int file = 0; file < this.nFiles; file++) {
+			System.out.println("FICHEIRO " + (file + 1));
+			line = 1;
+			for (i = 0; i < words[file].size(); i++) {
 				System.out.println("Palavra " + line + "->" + words[file].get(i));
 				line++;
 			}
 		}
 	}
-			
+	/**
+	 * Computes the signature of each file, to be compared later
+	 * @return document signature
+	 */
 	public int[][] getSignatureMatrix() {
+		int[] a = new int[nFuncs]; //n usado
+		int[] b = new int[nFuncs];
+		Random rand = new Random();
+		for (int i = 0; i < this.nFuncs; i++) {
+			a[i] = rand.nextInt((10000 - 1) + 1) + 1;
+			b[i] = rand.nextInt((10000 - 1) + 1) + 1;
+		}
+
 		int hash, minHash;
-		int assinatura[][]=new int[nFuncs][nFiles];
-		for(int ficheiro = 0; ficheiro < this.nFiles; ficheiro++) {
-			for(int i = 0;i<nFuncs;i++) {
-				minHash=1000000000;	//resetting the minhash
-				for(int j = 0; j < words[ficheiro].size(); j++) {
+		int assinatura[][] = new int[nFuncs][nFiles];
+		for (int ficheiro = 0; ficheiro < this.nFiles; ficheiro++) {
+			for (int i = 0; i < nFuncs; i++) {
+				minHash = 1000000000; // resetting the minhash
+				for (int j = 0; j < words[ficheiro].size(); j++) {
 					String elemento = words[ficheiro].get(j);
 					String key = elemento;
-					key=key+(i*Math.pow(2, 32)%12345678);	// trying to get sparser minHashes
+					key = key + (i * Math.pow(2, 32) % 12345678); // trying to get sparser minHashes
 					hash = Math.abs(key.hashCode());
-					if(hash < minHash) {
-						minHash=hash;
-					}else if(hash > 1000000000) {
-						hash=Math.floorDiv(hash,2);
-						if(hash < minHash) {
-							minHash=hash;
+					if (hash < minHash) {
+						minHash = hash;
+					} else if (hash > 1000000000) {
+						hash = Math.floorDiv(hash, 2);
+						if (hash < minHash) {
+							minHash = hash;
 						}
 					}
 				}
-				assinatura[i][ficheiro]=minHash;
+				assinatura[i][ficheiro] = minHash;
 			}
 		}
 		return assinatura;
 	}
-	
-	
-	public double[][] getSimilarity() {	
-		
+	/**
+	 * Computes the similarity between all the analyzed files, using the already computed signatures of each file
+	 * @return array of similarities between files
+	 */
+	public double[][] getSimilarity() {
+
 		double[][] similarity = new double[nFiles][nFiles];
-		int[][] sign= this.getSignatureMatrix();
-		
-		for(int file1=0;file1 < nFiles-1;file1++) {
-			
-			for(int file2=file1+1;file2<nFiles;file2++) {
-				
-				int iguais=0;
-		
-				for(int i=0;i < this.nFuncs;i++) {
-											
-						if(sign[i][file1]==sign[i][file2]) {
-							iguais++;
-						}
+
+		int[][] sign = this.getSignatureMatrix();
+
+		for (int file1 = 0; file1 < nFiles - 1; file1++) {
+
+			for (int file2 = file1 + 1; file2 < nFiles; file2++) {
+
+				int iguais = 0;
+
+				for (int i = 0; i < this.nFuncs; i++) {
+					if (sign[i][file1] == sign[i][file2]) {
+						iguais++;
+					}
 				}
-				
-				similarity[file1][file2]=(double)iguais/(double)nFuncs;
+				similarity[file1][file2] = (double) iguais / (double) nFuncs;
 			}
 		}
-		
-		
 		return similarity;
 	}
-	
-	public int newHashCode(String key) {		// sounds good, doesnt work
-		int hash=1;
-		for(int i=0; i < key.length();i++) {
-			hash*=(int) key.charAt(i);
+	/**
+	 * Hash Code function
+	 * @param key to be hashed
+	 * @return hash code
+	 */
+	public int newHashCode(String key) {
+		int hash = 0;
+		for (int i = 0; i < key.length(); i++) {
+			hash *= (int) key.charAt(i);
 		}
 		return hash;
 	}
-	
+	/**
+	 * Function used to create Shingles (small blocks of text used for comparison)
+	 * @param filepath
+	 * @param k length of each shingle
+	 * @return an array of shingles
+	 * @throws IOException
+	 */
 	public static ArrayList<String> makeShingles(String filepath, int k) throws IOException {
 		File file = new File(filepath);
 		
@@ -168,14 +213,14 @@ public class SimilarityCalculator {
 
 		return conjShingles;
 	}
-	
+	/**
+	 * Another constructor for using the LSH method, providing a threshold, number of rows and bands and the usual array of words
+	 * @param arrList of all words in all files
+	 * @param threshold of similarity to be considered
+	 * @param b number of bands
+	 * @param r number of rows
+	 */
 	public SimilarityCalculator(ArrayList<String>[] arrList, double threshold, int b, int r) {
-		// split the signature matrix M into bands
-		// hash bands of different documents
-		// after hashing multiple times, 2 bands hashed at least once to the same bucket
-		// chances are they are similar
-		
-		// r rows/ b bands (b*r=nFuncs)
 		this.b=b;
 		this.r=r;
 		this.nFuncs=b*r;
@@ -184,13 +229,18 @@ public class SimilarityCalculator {
 		this.nFiles = arrList.length;
 		this.words=arrList;
 	}
-	
+	/**
+	 * LSH, an advance method for computing the similarities after having obtained the signature of the documents
+	 * How it works:
+	 * 		*split the signature matrix M into bands
+	 * 		*hash bands of different documents
+	 * 		*after hashing multiple times, if 2 bands are hashed at least once to the same bucket chances are they are similar
+	 */
 	public void LSH() {
 		int[][] sim=this.getSignatureMatrix();
-		ArrayList<int[]> bandas=new ArrayList<>();	// arrayList de arrays (bandas), onde cada
-												// posi�ao sera ocupada por um array (banda)
-		for(int i=0;i<b;i++) {					// onde cada posi�ao equivale ao hashing
-			//if(bandas.get(i)==null){			// de cada coluna (documento)
+		ArrayList<int[]> bandas=new ArrayList<>();	/**< arrayList de arrays (bandas), onde cada posiçao sera ocupada por um array (banda) onde cada posiçao equivale ao hashing de cada coluna (documento) */
+		for(int i=0;i<b;i++) {				
+			//if(bandas.get(i)==null){
 				int[] banda=new int[nFiles];
 				for(int ai=0;ai<nFiles;ai++) {
 					int hashThis=1;
@@ -203,9 +253,9 @@ public class SimilarityCalculator {
 			//}
 		}
 		
-		// Temos neste momento uma estrutura de dados que contem todas as bandas, uma em cada posi�ao
-		// Queremos agora mapear cada uma das posi�oes das bandas para buckets; se pelo menos
-		// uma das posi�oes da alguma das bandas mapear para a mm posi�ao que outra
+		// Temos neste momento uma estrutura de dados que contem todas as bandas, uma em cada posiçao
+		// Queremos agora mapear cada uma das posiçoes das bandas para buckets; se pelo menos
+		// uma das posiçoes da alguma das bandas mapear para a mm posiçao que outra
 		// probably esses cenas sao semelhantes
 		
 		@SuppressWarnings("unchecked")
@@ -225,11 +275,13 @@ public class SimilarityCalculator {
 		}
 		
 		// Agora temos uma estrutura de dados com todos os buckets e onde foram inseridas
-		// todas as hashes de cada coluna de cada banda. Sempre que o size de cada posi�ao
+		// todas as hashes de cada coluna de cada banda. Sempre que o size de cada posiçao
 		// for maior que 1, quer dizer que temos similaridade entre os dois ficheiros
-		// nessa posi�ao
+		// nessa posiçao
 		
 		double[][] similarity=this.getSimilarity();
+		
+		int pares=0;
 		
 		for(int i=0; i<buckets.length;i++) {
 			if(buckets[i]!=null && buckets[i].size()>1) {
@@ -241,23 +293,20 @@ public class SimilarityCalculator {
 							System.out.println("Utilizadores semelhantes: " + buckets[i].get(user1)+" - "+buckets[i].get(user2));
 							System.out.println(buckets[i].get(user1) + ": " + words[buckets[i].get(user1)]);
 							System.out.println(buckets[i].get(user2) + ": " + words[buckets[i].get(user2)]);
+							pares++;
 						}
 					}
 				}
 			}
 		}
-		
-		
-		
-		// WHAT IF: arrays de documentos onde cada array representa uma banda
-		// e cada posi�ao do array representa a hash duma coluna
+		System.out.println(pares +" pares encontrados!");
 		
 	}
-	
+	/**
+	 * An extra hash function
+	 */
 	public int hash(int nr) {
-		return Math.abs((nr*nFiles)%10000);	// 10000 = espa�o no bucket
+		return Math.abs((nr*nFiles)%10000);	// 10000 = espaço no bucket
 	}
-	
-	
 
 }

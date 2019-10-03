@@ -1,3 +1,3 @@
-# MPEI-project
+# MatchMaker
 
-* verify file content with my mpei repo
+* Documentation and optimization of the MatchMaker(v1.0) app

@@ -1,7 +1,7 @@
 /**
  * Class for simple testing of the module "Contador Estocástico" (Contador_Est)
  */
-public class testCont_Est {
+public class TestCont_Est {
 
 	public static void main(String[] args) {
 		/**
@@ -80,7 +80,7 @@ public class testCont_Est {
 		System.in.read();
 		
 		/**
-		 * Now we test the exponencial counter with a factor of 3, seeing how it the probability of the counter actually incrementing decreases very quickly.
+		 * Now we test the exponencial counter with a factor of 3, seeing how the probability of the counter actually incrementing decreases very quickly.
 		*/
 		Contador_Est exp=new Contador_Est(3);
 		for (int i = 0; i < 100; i++) {

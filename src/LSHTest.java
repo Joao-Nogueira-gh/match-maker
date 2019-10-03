@@ -1,15 +1,16 @@
 package src;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
+import java.io.*;
+import java.util.*;
+/**
+ * Class for testing of the LSH algorithm created in the SimilarityCalc module
+ */
 public class LSHTest {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		
+		/**
+		 * Using or generated file of users and hobbies to check for similarites using LSH
+		 */
 		File usersF = new File("users.txt");
 		
 		BufferedReader br = new BufferedReader(new FileReader(usersF));
@@ -37,8 +38,6 @@ public class LSHTest {
 		}
 		
 		br.close();
-		
-		/*		Fim dos dados		*/
 		
 		SimilarityCalculator lsh=new SimilarityCalculator(userInfo,0.7,10,200);
 		lsh.LSH();

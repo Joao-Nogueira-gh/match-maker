@@ -2,7 +2,9 @@ package src;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * This is a "secondary" class which only use is to generate a file with 2000 users with random hobbies.
+ */
 public class generateFile {
 
 	public static void main(String[] args) throws IOException {
@@ -12,7 +14,9 @@ public class generateFile {
 
 		int nInteresses, ind;
 		Random rand = new Random();
-
+		/**
+		 * list of hobbies
+		 */
 		String[] inter = { "Fishing", "Cooking", "Travelling", "Writing", "Gaming", "Dancing", "Reading", "Photography",
 				"BoardGames", "Singing", "Music", "Magic", "Pottery", "Knitting", "Television", "Movies", "Running",
 				"Arts", "Yoga", "Acting", "Animals", "Astronomy", "Charity", "Camping", "Collecting", "Crafts",
@@ -29,7 +33,9 @@ public class generateFile {
 			pw.print(i + " ");
 			nInteresses = rand.nextInt((12 - 4) + 1) + 4;
 			int[] interEscolhidos = new int[nInteresses];
-
+			/**
+			 * assigns 4<n<12 random hobbies (without repetitions) for each user
+			 */
 			for (int j = 1; j <= nInteresses; j++) {
 				ind = rand.nextInt((maxInter - 1) + 1) + 1;
 				while ((contains(interEscolhidos, ind)) >= 0) {
@@ -43,9 +49,11 @@ public class generateFile {
 			pw.print("\n");
 			interEscolhidos = null;
 		}
-		System.out.println(maxInter);
+		//System.out.println(maxInter);
 		pw.close();
-		
+		/**
+		 * checking for duplicates
+		 */
 		boolean duplicates = false;
 		for (int k = 0; k < inter.length; k++) {
 			for (int l = k + 1; l < inter.length; l++) {
@@ -53,9 +61,14 @@ public class generateFile {
 					duplicates = true;}
 			}
 		}
-		System.out.println(duplicates);
+		System.out.println("Duplicates-> "+duplicates);
 	}
-
+	/**
+	 * simple contains function to check if an array contains a number
+	 * @param arr array
+	 * @param num element to check
+	 * @return 1 or -1 depending on the success
+	 */
 	public static int contains(int[] arr, int num) {
 		int r = -1;
 		for (int i = 0; i < arr.length; i++) {

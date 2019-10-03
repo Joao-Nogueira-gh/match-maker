@@ -30,7 +30,7 @@ public class Contador_Est {
 
 	}
 	/**
-	 * In case 1, probability, the counter only goes up if a random generated number, r (0<=r<=1), is inferior to the given probability, r<prob
+	 * In case 1, probability, the counter only goes up if a random generated number, r (0<=r<=1), is inferior to the given probability, r<prob <br>
 	 * In case 2, factor, the counter goes up if r is inferior to factor**(-counter)
 	 * @return the current value of the counter, or -1 if it did not succeed.
 	 */
@@ -52,7 +52,9 @@ public class Contador_Est {
 				return -1;
 		}
 	}
-
+	/**
+	 * reset counter
+	 */
 	public void clear() {
 		this.count = 0;
 	}

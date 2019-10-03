@@ -2,12 +2,13 @@ package src;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * Class for the implementation of our MatchMaker app, matching users according to similaritires in their hobbies
+ * It utilizes all the 3 previous designed modules
+ */
 public class appConjunta {
 
 	public static void main(String[] args) throws IOException {
-
-		File usersF = new File("users.txt");
 		
 		String[] inter = { "Fishing", "Cooking", "Travelling", "Writing", "Gaming", "Dancing", "Reading", "Photography",
 				"BoardGames", "Singing", "Music", "Magic", "Pottery", "Knitting", "Television", "Movies", "Running",
@@ -15,12 +16,12 @@ public class appConjunta {
 				"Drawing", "Gymnastics", "Golf", "PlayingInstruments", "Hiking", "HorseRiding", "MartialArts",
 				"Paiting", "ScubaDiving", "SkyDiving", "Surfing", "Swimming", "Tennis", "Volunteer", "Wrestling",
 				"Sports", "Football", "Cycling", "Skiing", "Hockey", "Cosplaying", "Fashion", "History", "Languages",
-				"Lego", "Puzzles", "Basketball", "Baseball", "Paintball", "Rugby", "KartRacing", "Bird Watching",
+				"Lego", "Puzzles", "Basketball", "Baseball", "Paintball", "Rugby", "KartRacing", "BirdWatching",
 				"Astrology", "Farming", "Gardening", "Poetry", "CardGames", "Darts", "LearningLanguages", "Bowling",
 				"Sailing", "Hunting", "WorkingOut", "Boxing", "Walking", "Decorating", "BloggingWebsites", "Tattoing",
 				"Programming", "StockMarket"};
-		
-		/*					Leitura do ficheiro					*/
+
+		File usersF = new File("C:\\Users\\John\\eclipse-workspace\\mpei\\users.txt");
 
 		BufferedReader br = new BufferedReader(new FileReader(usersF));
 
@@ -50,51 +51,31 @@ public class appConjunta {
 		
 		br.close();
 		
-		/*				Tratamento dos dados recebidos				*/
-
-		
-		// Se quisermos fazer a app interativa podemos perguntar qts utilizadores querem selecionar (% do cont_est)
-		// e tambem qual o threshold de semelhan�a q querem verificar
-		// e tipo quantos utilizadores mais semelhantes querem ver
-		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Qual o threshold desejado?");
 		double threshold=sc.nextDouble();
 		sc.close();
 		
-		Contador_Est cont=new Contador_Est(0.5);	//selecionemos % dos utilizadores
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		CountingBloomFilter<String> cbf=new CountingBloomFilter(10000,5,1);
+		CountingBloomFilter<String> cbf=new CountingBloomFilter<String>(10000,5,1);
 		
-		for(int i=0;i<userInfo.length;i++) {
-			cont.count();
-		}
-		
-		int betaUsers=cont.getCount();
-		
-		@SuppressWarnings("unchecked")
-		ArrayList<String>[] selectedUsers= new ArrayList[betaUsers];
-
-		
-		for(int i=0;i<betaUsers;i++) {
-			selectedUsers[i]=userInfo[i];
-			for(int j=0;j<selectedUsers[i].size();j++) {
-				cbf.insert(selectedUsers[i].get(j));
+		for (int i = 0; i < userInfo.length; i++) {
+			for (int j = 0; j < userInfo[i].size(); j++) {
+				cbf.insert(userInfo[i].get(j));
 			}
 		}
 
-		SimilarityCalculator similarityCalc=new SimilarityCalculator(selectedUsers, 5);
+		SimilarityCalculator similarityCalc=new SimilarityCalculator(userInfo, 100);
 		ArrayList<int[]> sims=new ArrayList<>();
 		
 		double[][] sim=similarityCalc.getSimilarity();
 		Contador_Est areaCounter = new Contador_Est(0.5);
 		
-		for(int i=0;i<betaUsers;i++) {
-			for(int r=0;r<selectedUsers[i].size();r++)
+		for(int i=0;i<userInfo.length;i++) {
+			for(int r=0;r<userInfo[i].size();r++)
 			{
 				areaCounter.count();
 			}
-			for(int j=0;j<betaUsers;j++) {
+			for(int j=0;j<userInfo.length;j++) {
 				if(j <= i) {
 					//System.out.printf("%5s","-");
 				}else {
@@ -126,13 +107,19 @@ public class appConjunta {
 		for(int i=0; i<sims.size(); i++)
 		{
 			fixe= sims.get(i);
-			System.out.println("Similar users:\n" + fixe[0] + ":"+selectedUsers[fixe[0]]+"\n"+
-					fixe[1] + ":"+selectedUsers[fixe[1]]);
+			System.out.println("Similar users:\n" + fixe[0] + ":"+userInfo[fixe[0]]+"\n"+
+					fixe[1] + ":"+userInfo[fixe[1]]);
 		}
 		
-		System.out.println("A Area mais popular � " + coolArea + " com " + maxFreq + " escolhas entre os utilizadores");
+		System.out.println("A Area mais popular é " + coolArea + " com " + maxFreq + " escolhas entre os utilizadores");
 		System.out.println("Foram feitos " + sims.size() + " pares");
-		System.out.printf("Em m�dia, cada utilizador escolheu %3.2f interesses",(double)areaCounter.getCount()*2/(double)betaUsers);
+		System.out.printf("Em média, cada utilizador escolheu %3.2f interesses\n",(double)areaCounter.getCount()*2/(double) userInfo.length);
+		
+		System.out.println("-----------------------------------------------------");
+
+		
+		SimilarityCalculator lsh=new SimilarityCalculator(userInfo,0.7,10,200);
+		lsh.LSH();
 
 
 		

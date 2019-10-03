@@ -2,11 +2,17 @@ package src;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * Class used for combined testing of the 3 modules (ContadorEstocastico, CountingBloomFilter and SimilarityCalculator)
+ */
 public class TesteConjunto {
 
 	public static void main(String[] args) throws IOException {
-
+		/**
+		 * The Counting Bloom Filter is used to check how many times a word appears in the analyzed files. <br>
+		 * The 'ContadorEstocastico' counts the total number of words in the 8 files (number=count/prob). <br>
+		 * The SimilarityCalculator calculates the two most similar files out those 8.
+		 */
 		// Teste dos tres modulos
 		
 		int nFiles=8;
@@ -37,7 +43,7 @@ public class TesteConjunto {
 		System.out.println("A palavra '"+palavra+"' apareceu "+cbf.count(palavra)+" vez(es)");
 		
 		// para testar o contador estocastico quero saber quantas palavras ha no total
-		System.out.println("O contador estoc�stico contou " + ce.getCount() + " palavras. Logo temos cerca de " + ce.getCount()/0.5 + " palavras no total.");
+		System.out.println("O contador estocástico contou " + ce.getCount() + " palavras. Logo temos cerca de " + ce.getCount()/0.5 + " palavras no total.");
 		
 		//	Iremos testar agora os falsos positivos
 		
@@ -79,12 +85,22 @@ public class TesteConjunto {
 
 
 	}
-	
+	/**
+	 * Generates an UUID (Universally Unique Identifier)
+	 * @return UUID
+	 */
 	public static String generateString() {
         String uuid = Long.toHexString(Double.doubleToLongBits(Math.random()));
         uuid=uuid.substring(2, uuid.length());
         return uuid;
-    }
+	}
+	/**
+	 * Function used to create Shingles (small blocks of text used for comparison)
+	 * @param filepath
+	 * @param k length of each shingle
+	 * @return an array of shingles
+	 * @throws IOException
+	 */
 	public static ArrayList<String> makeShingles(String filepath, int k) throws IOException {
 		File file = new File(filepath);
 
