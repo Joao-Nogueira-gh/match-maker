@@ -16,7 +16,7 @@ import java.util.*;
 * <small>generateFile.java can be run to generate a different users.txt file. If doing so you need to manually replace that file in res/users.txt </small>
 */
 /**
- * Class for the implementation of our MatchMaker app, matching users according
+ * <b>Main Class</b> for the implementation of our MatchMaker app, matching users according
  * to their similarities, based on their hobbies. <br>
  * It utilizes all the 3 previous designed modules.
  */

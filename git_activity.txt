@@ -1,8 +1,12 @@
-* 87b499c (HEAD -> master, origin/master, origin/HEAD) new generated documentation
+* 72efac4 (HEAD -> master, origin/master, origin/cleanup, origin/HEAD, cleanup) cleanup of documentation and file paths
+* 1be476b Doxyfile location changed
+* 87b3d68 readme
+* 1a7f4d8 Git activity log
+* 87b499c new generated documentation
 * 117f010 (origin/docBranch) documentation for the whole project
 * e356b87 mais vale prevenir
 * b19072c some documentation added
 * 8459c8c missing files
 * ba25811 folder structure
-* d38ebd4 (origin/cleaning-up-dirs, cleaning-up-dirs) docs and src folder
+* d38ebd4 (origin/cleaning-up-dirs) docs and src folder
 * eb11e59 first commit
