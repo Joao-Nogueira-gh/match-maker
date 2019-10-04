@@ -2,18 +2,18 @@ package src;
 
 import java.util.Arrays;
 /**
- * This class implements a simple counting bloom filter.
- * @param <T> -> uso de genericos
+ * This class implements a simple Counting Bloom Filter.
+ * @param <T> -> use of generics.
  */
 public class CountingBloomFilter<T> {
 
 	private int size, nFuncs;
 	private int[] array;
 	/**
-	 * This single constructor implements 3 different ones according to the used flag
-	 * @param size_or_fp -> stores either the size of the array of the bloom filter or the "fp" parameter (used to calculate optimal size of the array) 
-	 * @param nFuncs_or_m -> stores either the number of different hash functions being used or the "m" parameter (used to calculate optimal number of hash functions)
-	 * @param flag -> determines the type of constructor, what each parameter refers to
+	 * This single constructor implements 3 different ones according to the used flag.
+	 * @param size_or_fp -> stores either the size of the array of the bloom filter or the "fp" parameter (used to calculate optimal size of the array).
+	 * @param nFuncs_or_m -> stores either the number of different hash functions being used or the "m" parameter (used to calculate optimal number of hash functions).
+	 * @param flag -> determines the type of constructor, what each parameter refers to.
 	 */
 	public CountingBloomFilter(double size_or_fp, int nFuncs_or_m,int flag) {
 		if (flag==1) {
@@ -45,8 +45,8 @@ public class CountingBloomFilter<T> {
 
 	}
 	/**
-	 * Insert element into the counting bloom filter, uses k different hash functions assigned in the constructor
-	 * @param elemento -> element to insert
+	 * Insert element into the counting bloom filter, uses k different hash functions assigned in the constructor.
+	 * @param elemento -> element to insert.
 	 */
 	public void insert(T elemento) {
 		String key = elemento.toString();
@@ -114,7 +114,7 @@ public class CountingBloomFilter<T> {
 
 	}
 	/**
-	 * function that generates the hash code for each inserted element
+	 * Function that generates the hash code for each inserted element
 	 * @param key
 	 * @return hash
 	 */

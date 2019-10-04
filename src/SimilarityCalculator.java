@@ -3,19 +3,19 @@ package src;
 import java.io.*;
 import java.util.*;
 /**
- * The SimilarityCalculator determines the most identical documents out of a set.
- * How it works:
- *		* apply k hash functions to each of the words in the documents
- *		* retrieve the minimal hash value that was generated
- *		* having k hash functions, a document's signature is the set of k min hashes
- *		*through algorithms like the Jaccard index the similarity of those signatures is computed
+ * The SimilarityCalculator determines the most identical documents out of a set. <br>
+ * How it works: <br>
+ *		* apply <i>k</i> hash functions to each of the words in the documents; <br>
+ *		* retrieve the minimal hash value that was generated; <br>
+ *		* having k hash functions, a document's signature is the set of k min hashes <br>
+ *		* through algorithms like the <i>Jaccard Index</i> the similarity of those signatures is computed.
  */
 public class SimilarityCalculator {
 
 	int nFuncs;
 	int nFiles;
 	int b, r;
-	ArrayList<String>[] words; //*< array de arraylists onde cada posiçao ira conter um array com as palavras do ficheiro da posiçao i do array de ficheiros passado como argumento */
+	ArrayList<String>[] words; /**< ArrayList of Arrays of strings, where each ArrayList position <i>i</i> contains the an array of Strings with the words of each document. */
 	double threshold;
 
 	@SuppressWarnings("unchecked")
@@ -230,15 +230,15 @@ public class SimilarityCalculator {
 		this.words=arrList;
 	}
 	/**
-	 * LSH, an advance method for computing the similarities after having obtained the signature of the documents
-	 * How it works:
-	 * 		*split the signature matrix M into bands
-	 * 		*hash bands of different documents
-	 * 		*after hashing multiple times, if 2 bands are hashed at least once to the same bucket chances are they are similar
+	 * LSH, an advance method for computing the similarities after having obtained the signature of the documents <br>
+	 * How it works: <br>
+	 * 		* split the signature matrix M into bands <br>
+	 * 		* hash bands of different documents <br>
+	 * 		* after hashing multiple times, if 2 bands are hashed at least once to the same bucket chances are they are similar
 	 */
 	public void LSH() {
 		int[][] sim=this.getSignatureMatrix();
-		ArrayList<int[]> bandas=new ArrayList<>();	/**< arrayList de arrays (bandas), onde cada posiçao sera ocupada por um array (banda) onde cada posiçao equivale ao hashing de cada coluna (documento) */
+		ArrayList<int[]> bandas=new ArrayList<>();
 		for(int i=0;i<b;i++) {				
 			//if(bandas.get(i)==null){
 				int[] banda=new int[nFiles];
@@ -252,11 +252,6 @@ public class SimilarityCalculator {
 				bandas.add(banda);
 			//}
 		}
-		
-		// Temos neste momento uma estrutura de dados que contem todas as bandas, uma em cada posiçao
-		// Queremos agora mapear cada uma das posiçoes das bandas para buckets; se pelo menos
-		// uma das posiçoes da alguma das bandas mapear para a mm posiçao que outra
-		// probably esses cenas sao semelhantes
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<Integer>[] buckets = new ArrayList[10000];

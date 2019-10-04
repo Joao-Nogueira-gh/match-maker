@@ -3,15 +3,15 @@ package src;
 import java.io.*;
 import java.util.*;
 /**
- * Class for testing of the LSH algorithm created in the SimilarityCalc module
+ * Class for testing of the LSH algorithm, developed in the SimilarityCalculator module.
  */
 public class LSHTest {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		/**
-		 * Using or generated file of users and hobbies to check for similarites using LSH
+		 * Using our generated file of users and their hobbies to check for similarites using the LSH algorithm.
 		 */
-		File usersF = new File("users.txt");
+		File usersF = new File("./../res/users.txt");
 		
 		BufferedReader br = new BufferedReader(new FileReader(usersF));
 

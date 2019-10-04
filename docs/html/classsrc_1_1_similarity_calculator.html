@@ -110,10 +110,16 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:aa8f9c5f4b75420e8ff0b9d3ff0503109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="classsrc_1_1_similarity_calculator.html">SimilarityCalculator</a> determines the most identical documents out of a set. How it works:</p><ul>
-<li>apply k hash functions to each of the words in the documents</li>
-<li>retrieve the minimal hash value that was generated</li>
-<li>having k hash functions, a document's signature is the set of k min hashes *through algorithms like the Jaccard index the similarity of those signatures is computed </li>
+<div class="textblock"><p>The <a class="el" href="classsrc_1_1_similarity_calculator.html">SimilarityCalculator</a> determines the most identical documents out of a set. <br  />
+ How it works: <br  />
+</p><ul>
+<li>apply <em>k</em> hash functions to each of the words in the documents; <br  />
+</li>
+<li>retrieve the minimal hash value that was generated; <br  />
+</li>
+<li>having k hash functions, a document's signature is the set of k min hashes <br  />
+</li>
+<li>through algorithms like the <em>Jaccard Index</em> the similarity of those signatures is computed. </li>
 </ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a868985f4ba2652f9d473bb0da9bba0f2"></a>
@@ -404,8 +410,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>LSH, an advance method for computing the similarities after having obtained the signature of the documents How it works: *split the signature matrix M into bands *hash bands of different documents *after hashing multiple times, if 2 bands are hashed at least once to the same bucket chances are they are similar </p>
-<p>&lt; arrayList de arrays (bandas), onde cada posiçao sera ocupada por um array (banda) onde cada posiçao equivale ao hashing de cada coluna (documento)</p>
+<p>LSH, an advance method for computing the similarities after having obtained the signature of the documents <br  />
+ How it works: <br  />
+</p><ul>
+<li>split the signature matrix M into bands <br  />
+</li>
+<li>hash bands of different documents <br  />
+</li>
+<li>after hashing multiple times, if 2 bands are hashed at least once to the same bucket chances are they are similar </li>
+</ul>
 
 </div>
 </div>
@@ -521,7 +534,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_similarity_calculator_8java.html">SimilarityCalculator.java</a></li>
+<li>/home/nogas/Desktop/ua/cslp/gitprojs/match-maker/src/<a class="el" href="_similarity_calculator_8java.html">SimilarityCalculator.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

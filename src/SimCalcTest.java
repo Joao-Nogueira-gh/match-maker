@@ -10,7 +10,7 @@ public class SimCalcTest {
 	public static void main(String[] args) throws IOException {
 
 		/**
-		 * Test number 1, calculate similarities between text files
+		 * Test number 1, calculate similarities between text files.
 		 */
 
 		int nFiles = 3;
@@ -18,7 +18,7 @@ public class SimCalcTest {
 		File[] files = new File[nFiles];
 
 		for (int numero = 1; numero <= nFiles; numero++) {
-			files[numero - 1] = new File("C:\\Users\\John\\Desktop\\mpei\\livro" + (numero) + ".txt");
+			files[numero - 1] = new File("./../res/livro" + (numero) + ".txt");
 		}
 
 		SimilarityCalculator simCalc = new SimilarityCalculator(files, nFuncs);
@@ -61,7 +61,7 @@ public class SimCalcTest {
 		System.in.read();
 
 		/**
-		 * Test number 2, calculate similarities between text files, this time using Shingles
+		 * Test number 2, calculate similarities between text files, this time using Shingles.
 		 */
 
 		int numShingles = 5;
@@ -69,9 +69,9 @@ public class SimCalcTest {
 		nFiles = 3;
 //
 //		
-		ArrayList<String> a = makeShingles("C:\\Users\\John\\Desktop\\mpei\\livro1.txt", numShingles);
-		ArrayList<String> b = makeShingles("C:\\Users\\John\\Desktop\\mpei\\livro2.txt", numShingles);
-		ArrayList<String> c = makeShingles("C:\\Users\\John\\Desktop\\mpei\\livro3.txt", numShingles);
+		ArrayList<String> a = makeShingles("./../res/livro1.txt", numShingles);
+		ArrayList<String> b = makeShingles("./../res/livro2.txt", numShingles);
+		ArrayList<String> c = makeShingles("./../res/livro3.txt", numShingles);
 
 		ArrayList<ArrayList<String>> conj = new ArrayList<ArrayList<String>>();
 		conj.add(a);
@@ -110,10 +110,10 @@ public class SimCalcTest {
 		System.in.read();
 
 		/**
-		 * Test number 3, calculate similarities between users of a 'IMDB-like' website, MovieLens
+		 * Test number 3, calculate similarities between the users of a 'IMDB-like' website, MovieLens.
 		 */
 
-		HashMap<Integer, ArrayList<String>> filmes = MovieLens("C:\\Users\\John\\Desktop\\mpei\\u.data");
+		HashMap<Integer, ArrayList<String>> filmes = MovieLens("./../res/u.data");
 		// int nUsers = filmes.keySet().size();
 		ArrayList<Integer> userslist = new ArrayList<>();
 		for (Integer id : filmes.keySet()) {

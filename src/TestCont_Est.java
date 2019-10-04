@@ -1,5 +1,6 @@
+package src;
 /**
- * Class for simple testing of the module "Contador Estocástico" (Contador_Est)
+ * Class for simple testing of the module Contador_Est
  */
 public class TestCont_Est {
 

@@ -1,17 +1,18 @@
 package src;
 
 /**
- * Classe para desenvolvimento do módulo do 'Contador Estocástico', um contador
- * que só é incrementado com base numa probabilidade.
+ * Class for development of the 'Contador Estocástico' module. <br>
+ * It's a counter that is only incremented based on a predefined probability. (if p=50% the counter will only count approximately half of the times)
  */
 public class Contador_Est {
 
-	private int count, fator; //* variable declaration for the counter, probability and factor */
+	private int count, fator; /**< variable declaration for the counter, probability and factor */
 	private double prob;
 
 	/**
-	 * Um construtor unico que executa o trabalho de dois construtores diferentes. <br>
-	 * Caso o valor passado seja menor que 1, estamos a trabalhar com uma probabilidade, caso seja maior que 1 estamos a trabalhar com um fator.
+	 * This constructor does the job of two different ones. <br>
+	 * If the passed @parameter prob is less than 1, we are dealing with a probability. <br>
+	 * If it's more than 1 we're dealing with a factor.
 	 */
 	public Contador_Est(double prob) {
 		if (prob>=0 && prob<=1) {
@@ -30,8 +31,8 @@ public class Contador_Est {
 
 	}
 	/**
-	 * In case 1, probability, the counter only goes up if a random generated number, r (0<=r<=1), is inferior to the given probability, r<prob <br>
-	 * In case 2, factor, the counter goes up if r is inferior to factor**(-counter)
+	 * In case 1, probability, the counter only goes up if a random generated number, r (0<=r<=1), is inferior to the given probability, r<prob. <br>
+	 * In case 2, factor, the counter goes up if r is inferior to factor**(-counter).
 	 * @return the current value of the counter, or -1 if it did not succeed.
 	 */
 	public int count() {

@@ -3,14 +3,14 @@ package src;
 import java.io.*;
 import java.util.*;
 /**
- * Class used for combined testing of the 3 modules (ContadorEstocastico, CountingBloomFilter and SimilarityCalculator)
+ * Class used for combined testing of the 3 modules (Contador_Est, CountingBloomFilter and SimilarityCalculator)
  */
 public class TesteConjunto {
 
 	public static void main(String[] args) throws IOException {
 		/**
-		 * The Counting Bloom Filter is used to check how many times a word appears in the analyzed files. <br>
-		 * The 'ContadorEstocastico' counts the total number of words in the 8 files (number=count/prob). <br>
+		 * The CountingBloomFilter is used to check how many times a word appears in the analyzed files. <br>
+		 * The Contador_Est counts the total number of words in the 8 files (number=count/prob). <br>
 		 * The SimilarityCalculator calculates the two most similar files out those 8.
 		 */
 		// Teste dos tres modulos
@@ -18,7 +18,7 @@ public class TesteConjunto {
 		int nFiles=8;
 		File[] ficheiros= new File[nFiles];
 		for(int numero=1;numero<=nFiles;numero++) {
-			ficheiros[numero-1]=new File("C:\\Users\\John\\Desktop\\mpei\\text"+numero+".txt");
+			ficheiros[numero-1]=new File("./../res/text"+numero+".txt");
 		}
 		
 		

@@ -2,7 +2,7 @@ package src;
 
 import java.io.*;
 /**
- * This class is used to test how good our hash functions are, and generates matlab (.m) files from which you can create graphs to check said performance
+ * This class is used to test how good our hash functions are, and generates matlab (.m) files from which you can create graphs to check said performance.
  */
 public class HashFunctionTest {
 

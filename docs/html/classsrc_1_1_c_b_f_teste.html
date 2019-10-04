@@ -82,7 +82,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:afe3d5869beddd3b922eb97f2abc02290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for testing the module of the Counting Bloom Filter </p>
+<div class="textblock"><p>Class for testing of the module <a class="el" href="classsrc_1_1_counting_bloom_filter.html">CountingBloomFilter</a> </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="afe3d5869beddd3b922eb97f2abc02290"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe3d5869beddd3b922eb97f2abc02290">&#9670;&nbsp;</a></span>generateString()</h2>
@@ -132,14 +132,15 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Para testar o nosso Counting Bloom Filter, usaremos o mesmo raciciocinio seguido nos guioes praticos: inserimos n strings aleatorias no filtro e, posteriormente, procuramos m strings aleatorias nesse mesmo filtro. <br  />
- A probabilidade de serem geradas 2 strings iguais e desprezivel, logo o acontecimento de uma string gerada ser de facto membro do cbf e reduzido ao impossivel. <br  />
- Sempre que for detetada uma string no cbf consideramos como falso positivo!</p>
+<p>In order to test our Counting Bloom Filter we will follow the procedures learned in the lab assignments: <br  />
+ Insert <em>n</em> random strings in the filter and look for other <em>m</em> (also random generated) strings in that filter. <br  />
+ The probability of two exactly equal strings in those two groups being generated is incredibly small so it's disregarded. <br  />
+ Whenever a string from <em>m</em> is detected in the filter, we consider it a false positive.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_c_b_f_test_8java.html">CBFTest.java</a></li>
+<li>/home/nogas/Desktop/ua/cslp/gitprojs/match-maker/src/<a class="el" href="_c_b_f_test_8java.html">CBFTest.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

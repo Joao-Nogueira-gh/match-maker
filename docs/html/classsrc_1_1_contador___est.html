@@ -94,7 +94,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a53b50f9bd901d19988c8af18e46d322d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Classe para desenvolvimento do módulo do 'Contador Estocástico', um contador que só é incrementado com base numa probabilidade. </p>
+<div class="textblock"><p>Class for development of the 'Contador Estocástico' module. <br  />
+ It's a counter that is only incremented based on a predefined probability. (if p=50% the counter will only count approximately half of the times) </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1cedb029f97286d5a823fdfcb8793db0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1cedb029f97286d5a823fdfcb8793db0">&#9670;&nbsp;</a></span>Contador_Est()</h2>
@@ -111,8 +112,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Um construtor unico que executa o trabalho de dois construtores diferentes. <br  />
- Caso o valor passado seja menor que 1, estamos a trabalhar com uma probabilidade, caso seja maior que 1 estamos a trabalhar com um fator. </p>
+<p>This constructor does the job of two different ones. <br  />
+ If the passed @parameter prob is less than 1, we are dealing with a probability. <br  />
+ If it's more than 1 we're dealing with a factor. </p>
 
 </div>
 </div>
@@ -149,8 +151,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>In case 1, probability, the counter only goes up if a random generated number, r (0&lt;=r&lt;=1), is inferior to the given probability, r&lt;prob <br  />
- In case 2, factor, the counter goes up if r is inferior to factor**(-counter) </p><dl class="section return"><dt>Returns</dt><dd>the current value of the counter, or -1 if it did not succeed. </dd></dl>
+<p>In case 1, probability, the counter only goes up if a random generated number, r (0&lt;=r&lt;=1), is inferior to the given probability, r&lt;prob. <br  />
+ In case 2, factor, the counter goes up if r is inferior to factor**(-counter). </p><dl class="section return"><dt>Returns</dt><dd>the current value of the counter, or -1 if it did not succeed. </dd></dl>
 
 </div>
 </div>
@@ -242,7 +244,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_contador___est_8java.html">Contador_Est.java</a></li>
+<li>/home/nogas/Desktop/ua/cslp/gitprojs/match-maker/src/<a class="el" href="_contador___est_8java.html">Contador_Est.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -3,7 +3,8 @@ package src;
 import java.io.*;
 import java.util.*;
 /**
- * This is a "secondary" class which only use is to generate a file with 2000 users with random hobbies.
+ * This is a "secondary" class which only use is to generate a file with 2000 users with random hobbies to be later used to test our MatchMaker app. <br>
+ * WARNING: The users.txt file used for testing is already located in res/users.txt so there's no need to generate a new one.
  */
 public class generateFile {
 
@@ -34,7 +35,7 @@ public class generateFile {
 			nInteresses = rand.nextInt((12 - 4) + 1) + 4;
 			int[] interEscolhidos = new int[nInteresses];
 			/**
-			 * assigns 4<n<12 random hobbies (without repetitions) for each user
+			 * assigns n, where 4<n<12, random hobbies for each user
 			 */
 			for (int j = 1; j <= nInteresses; j++) {
 				ind = rand.nextInt((maxInter - 1) + 1) + 1;
@@ -52,7 +53,7 @@ public class generateFile {
 		//System.out.println(maxInter);
 		pw.close();
 		/**
-		 * checking for duplicates
+		 * Checking for duplicates
 		 */
 		boolean duplicates = false;
 		for (int k = 0; k < inter.length; k++) {
@@ -64,7 +65,7 @@ public class generateFile {
 		System.out.println("Duplicates-> "+duplicates);
 	}
 	/**
-	 * simple contains function to check if an array contains a number
+	 * Simple contains function to check if an array contains a number
 	 * @param arr array
 	 * @param num element to check
 	 * @return 1 or -1 depending on the success

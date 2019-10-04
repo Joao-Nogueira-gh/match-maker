@@ -3,21 +3,16 @@ package src;
 import java.io.*;
 import java.util.*;
 /**
- * Class for testing the module of the Counting Bloom Filter
+ * Class for testing of the module CountingBloomFilter
  */
 public class CBFTeste {
 
 	public static void main(String[] args) throws IOException {
 		/**
-		 * 
-		 * Para testar o nosso Counting Bloom Filter, usaremos o mesmo raciciocinio
-		 * seguido nos guioes praticos: inserimos n strings aleatorias no filtro e,
-		 * posteriormente, procuramos m strings aleatorias nesse mesmo filtro. <br>
-		 * A probabilidade de serem geradas 2 strings iguais e desprezivel, logo o
-		 * acontecimento de uma string gerada ser de facto membro do cbf e reduzido ao
-		 * impossivel. <br>
-		 * Sempre que for detetada uma string no cbf consideramos como falso positivo!
-		 *
+		 * In order to test our Counting Bloom Filter we will follow the procedures learned in the lab assignments: <br>
+		 * Insert <i>n</i> random strings in the filter and look for other <i>m</i> (also random generated) strings in that filter. <br>
+		 * The probability of two exactly equal strings in those two groups being generated is incredibly small so it's disregarded. <br>
+		 * Whenever a string from <i>m</i> is detected in the filter, we consider it a false positive.
 		 */
 
 		CountingBloomFilter<String> cbf;
@@ -79,7 +74,7 @@ public class CBFTeste {
 		System.in.read();
 		System.in.read();
 		
-		File livro = new File("C:\\Users\\John\\Desktop\\mpei\\livrog.txt");
+		File livro = new File("./../res/livrog.txt");
 		
 		CountingBloomFilter<String> cbfLivro=new CountingBloomFilter<>(10000, 1000, 2);
 
