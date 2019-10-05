@@ -1,10 +1,11 @@
-package src;
+
+import java.io.*;
 /**
  * Class for simple testing of the module Contador_Est
  */
 public class TestCont_Est {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		/**
 		 * Initialization of several counters with different probabilities
 		 */

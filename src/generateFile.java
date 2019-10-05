@@ -1,4 +1,4 @@
-package src;
+
 
 import java.io.*;
 import java.util.*;
@@ -29,7 +29,6 @@ public class generateFile {
 				"Sailing", "Hunting", "WorkingOut", "Boxing", "Walking", "Decorating", "BloggingWebsites", "Tattoing",
 				"Programming", "StockMarket"};
 		int maxInter = inter.length;
-
 		for (int i = 1; i <= nUsers; i++) {
 			pw.print(i + " ");
 			nInteresses = rand.nextInt((12 - 4) + 1) + 4;

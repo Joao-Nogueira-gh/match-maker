@@ -1,11 +1,11 @@
-package src;
+
 
 import java.io.*;
 import java.util.*;
 /**
  * Class for testing of the module CountingBloomFilter
  */
-public class CBFTeste {
+public class CBFTest {
 
 	public static void main(String[] args) throws IOException {
 		/**

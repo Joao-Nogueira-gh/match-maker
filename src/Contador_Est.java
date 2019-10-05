@@ -1,4 +1,3 @@
-package src;
 
 /**
  * Class for development of the 'Contador Estocástico' module. <br>
