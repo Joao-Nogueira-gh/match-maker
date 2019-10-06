@@ -8,7 +8,7 @@
 
 * There are also some tests which you can run manually if you want to.
 
-* To run with docker: 
+* To run with docker: https://hub.docker.com/r/joaonog/match-maker
 
 ```
 docker pull joaonog/match-maker
