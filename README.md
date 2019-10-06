@@ -18,4 +18,5 @@ docker run -i -t joaonog/match-maker
 
 Without adding '-i -t' docker will not wait for scanner input.
 
-* **Recommended value for threshold (user input) -> 0.3**
+* **Our MatchMaker app, when initialized, asks the user for input of the threshold value, this is the similarity threshold the program will consider in order to make matches between users (lower value->less matches found)**
+* **The suggested value for the threshold is 0.3**
